@@ -1,5 +1,6 @@
 #ifndef __HEADER_H__
 #define __HEADER_H__
+#include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -20,6 +21,19 @@ typedef struct builtin
 	char *str;
 	int (*f)(void);
 } built;
+
+/*signal handler function*/
+void signals(int sign);
+
+/* Check getline return value */
+int checkline(char *buff);
+
+/* Free functions */
+void free_all(char *buff, char **bigb, char *cmd);
+void free_some(char *buff, char **bigb);
+void free_parent(char *buff, char **bigb, char *cmd);
+int execerror(char *buff, char **bigb);
+int child_fail(char *buff, char**bigb);
 
 /* Helper functions */
 char *_memset(char *s, char b, unsigned int n);
@@ -42,4 +56,5 @@ char *get_env(char *buff);
 int getbuiltfunc(char *s);
 int printenv(void);
 int exitt(void);
+
 #endif

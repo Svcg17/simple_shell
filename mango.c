@@ -1,108 +1,54 @@
 #include "header.h"
-
 /**
  * main - a simple shell
  *
  * Return: 0
  */
-
 int main(void)
 {
-	int status;
+	int status, line;
+        int counter = 0, builtfunc_ret = 0;
+        char *buff = NULL, *cmd = NULL;
+        char **bigb = NULL;
+        size_t size = 0;
+        pid_t child_pd;
 
-	size_t size = 0;
-
-	char *buff = NULL;
-	char **bigb = NULL;
-	char *cmd = NULL;
-	pid_t child_pd;
-
-	int line;
-
-/*	struct stat st; */
-
-	int counter = 0;
-	int builtfunc_ret = 0;
-
+	signal(SIGINT, SIG_IGN);
 	while (1)
 	{
-		/* bigb = malloc(sizeof(char *) * 1024);*/
-		/* buff = malloc(sizeof(char) * 1024); */
-		buff = NULL;
-		bigb = NULL;
-		cmd = NULL;
+		buff = NULL, bigb = NULL, cmd = NULL;
 		counter++;
-		if (isatty(fileno(stdin)))
+		if (isatty(0))
 			printf("mango$ ");
-
 		line = getline(&buff, &size, stdin);
 		if (line == -1)
-		{
-			printf("\n");
-
-			free(buff);
-			return (0);
-		}
-/*
-		else if (buff[0] == '\n')
-			continue;
-*/
+			return (checkline(buff));
 		bigb = getinput(buff);
-		if (bigb[0] == '\0')
+		if (bigb[0] == NULL)
 		{
-			free(buff);
-			free(bigb);
+			free_some(buff, bigb);
 			continue;
 		}
 		builtfunc_ret = getbuiltfunc(bigb[0]);
 		if (builtfunc_ret == -1)
-		{
 			break;
-		}
 		cmd = get_env(bigb[0]);
 		child_pd = fork();
 		if (child_pd == -1)
-		{
-			free(buff);
-			free(bigb);
-			perror("Error: ");
-			return (1);
-		}
+			return (child_fail(buff, bigb));
 		if (child_pd == 0)
 		{
 			if (cmd == NULL)
-			{
 				cmd = "";
-			}
 			if (execve(cmd, bigb, NULL) == -1)
-			{
-				printf("mango: %d: %s: not found\n", counter, buff);
-				free(buff);
-				free(bigb);
-/*
-  not sure what this does, keep an eye if there is a problem, do tests
-                                free(cmd);
-*/
-				return (-1);
-			}
+				return(execerror(buff, bigb));
 		}
 		else
 		{
 			wait(&status);
-			if (bigb[0][0] == '/')
-			{
-				free(buff);
-				free(bigb);
-			}
-			else
-			{
-				free(buff);
-				free(cmd);
-				free(bigb);
-			}
+			free_parent(buff, bigb, cmd);
 		}
 	}
-	free(buff);
-	free(bigb);
+	free_some(buff, bigb);
 	return (0);
 }
