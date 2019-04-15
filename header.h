@@ -43,6 +43,7 @@ int _strlen(char *s);
 char *_strdup(char *str);
 
 /* helperfunctions2.c */
+char *str_concat(char *s1, char *s2);
 int _strncmp(char *s1, const char *s2, int n);
 
 /* Functions relating to parsing and tokenizing the command and PATH */
