@@ -11,7 +11,6 @@ char *catdir(char **dirs, char *cmd)
 {
 	char *str;
 	char *cwdtemp;
-
 	struct stat st;
 /*
 static
@@ -26,13 +25,9 @@ static
 	if (cwd == NULL)
 		return (NULL);
 
-
-
 	getcwd(cwd, 256);
 	cwdtemp = _strcat(cwd, "/");
 	cwdtemp = _strcat(cwd, cmd);
-
-
 	while (dirs[i])
 	{
 			temp[0] = 0;
@@ -40,7 +35,6 @@ static
 			str = _strcat(temp, dirs[i]);
 			str = _strcat(temp, "/");
 			str = _strcat(temp, cmd);
-
                         /* to account for `ls` executable files in cwd */
 			if (stat(cwdtemp, &st) == 0 && stat(str, &st) == 0)
 			{
@@ -57,7 +51,6 @@ static
 				free(temp);
 				return (cmd);
 			}
-
 			/* for regular command inputs */
 			if (stat(str, &st) == 0 && stat(cwdtemp, &st) < 0)
 			{
@@ -66,10 +59,6 @@ static
 				free(temp);
 				return (str);
 			}
-
-
-
-
 		_memset(temp, '\0', 256);
 		i++;
 	}
@@ -77,9 +66,6 @@ static
 	free(temp);
 	return (NULL);
 }
-
-
-
 /**
  * parse_dirs - parses an environmental variables value into array of strings
  * @str: the directories of chosen environmental variable
@@ -89,13 +75,12 @@ static
 char **parse_dirs(char *str)
 {
 	char **bigb = malloc(sizeof(char *) * 1024);
-
 	char *token;
 	int i;
 
-
 	token = strtok(str, ":");
 	i = 0;
+	printf("%s\n", token);
 	while (token)
 	{
 		bigb[i] = token;
@@ -127,6 +112,11 @@ char *findvar(void)
 			token = strtok(NULL, "PATH");
 			break;
 		}
+/*		else if (_strcmp(token, ":PATH") == 0)
+		{
+			token = strtok(NULL, ":PATH");
+			break;
+			}*/
 		else
 		{
 			token = NULL;
@@ -136,7 +126,8 @@ char *findvar(void)
 	if (token)
 	{
 		token = _strdup(token);
-		free(copy);
+		/* if (token */
+		free(copy); /*cpy*/
 	}
 
 	return (token);
@@ -162,8 +153,24 @@ char *get_env(char *buff)
 	char **bigb;
 	char *envvar;
 	char *concatstr;
+	struct stat st;
 
 	envvar = findvar();
+
+	if (envvar == NULL)
+	{
+		free(envvar);
+		return(buff);
+	}
+	if (envvar[0] == ':')
+	{
+		if(stat(buff, &st) == 0)
+		{
+			free(envvar);
+			return (buff);
+		}
+	}
+
 	bigb = parse_dirs(envvar);
 	concatstr = catdir(bigb, buff);
 
