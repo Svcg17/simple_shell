@@ -203,18 +203,18 @@ char **getinput(char *input)
 
         while (input[i])
                 i++;
-/*
+
 	if (input[i - 1] == '\n')
-*/
+
 		input[i - 1] = '\0';
 
-        token = strtok(input, " ");
+        token = strtok(input, " \t");
         i = 0;
         while (token)
         {
                 bigb[i] = token;
                 i++;
-                token = strtok(NULL, " ");
+                token = strtok(NULL, " \t");
         }
         bigb[i] = NULL;
 	/* free(token); should be free with main()::free(buff) */
