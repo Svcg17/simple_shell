@@ -32,7 +32,7 @@ int checkline(char *buff);
 void free_all(char *buff, char **bigb, char *cmd);
 void free_some(char *buff, char **bigb);
 void free_parent(char *buff, char **bigb, char *cmd);
-int execerror(char *buff, char **bigb);
+int execerror(char *buff, char **bigb, int counter, char *arg);
 int child_fail(char *buff, char**bigb);
 
 /* Helper functions */
@@ -45,6 +45,8 @@ char *_strdup(char *str);
 /* helperfunctions2.c */
 char *str_concat(char *s1, char *s2);
 int _strncmp(char *s1, const char *s2, int n);
+char *i_to_a(int num);
+void rev_string(char *s);
 
 /* Functions relating to parsing and tokenizing the command and PATH */
 char **getinput(char *input);

@@ -50,3 +50,72 @@ char *str_concat(char *s1, char *s2)
 	}
 	return (s3);
 }
+/**
+ * rev_string - Reverses a string
+ *
+ * @s: The string to reverse
+ *
+ * Return: nothing
+ */
+
+void rev_string(char *s)
+{
+	int i;
+	int len;
+	char newStr;
+
+	i = 0;
+	len = _strlen(s) - 1;
+
+	while (len >= i)
+	{
+		newStr = s[len]; /*newStr == n*/
+		s[len] = s[i]; /*s[len] == H*/
+		s[i] = newStr; /*s[i] == n*/
+		len--;
+		i++;
+	}
+}
+
+int no_of_digits(int num)
+{
+	int digit_count = 0;
+
+	while(num > 0)
+	{
+		digit_count++;
+		num /= 10;
+	}
+
+	return digit_count;
+}
+
+
+char *i_to_a(int num)
+{
+	char *str;
+	int digit_count = 0;
+
+	if(num < 0)
+	{
+		num = -1*num;
+		digit_count++;
+	}
+
+	digit_count += no_of_digits(num);
+	str = (char *)malloc(sizeof(char)*(digit_count+1));
+
+	str[digit_count] = '\0';
+
+	while(num > 0)
+	{
+		str[digit_count-1] = num%10 + '0';
+		num = num/10;
+		digit_count--;
+	}
+
+	if(digit_count == 1)
+		str[0] = '-';
+
+	return str;
+}
