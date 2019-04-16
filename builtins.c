@@ -1,5 +1,4 @@
 #include "header.h"
-
 /**
  * exitt - exits the shell when 'exit' is typed
  * Return: -1
@@ -17,9 +16,13 @@ int exitt(void)
 int printenv(void)
 {
 	int i;
+	char *cpy;
+
 	for (i = 0; environ[i]; i ++)
 	{
-		printf("%s\n", environ[i]);
+		cpy = _strdup(environ[i]);
+		_puts(cpy);
+		free(cpy);
 	}
 	return (1);
 }
