@@ -84,7 +84,7 @@ int execerror(char *buff, char **bigb, int counter, char *arg)
 /*free final concatenated string*/
 	free(str5);
 	free_some(buff, bigb);
-	return (-1);
+	exit(1);
 }
 
 /**
@@ -98,5 +98,5 @@ int child_fail(char *buff, char **bigb)
 {
 	free_some(buff, bigb);
 	perror("Error: ");
-	return (1);
+	exit(1);
 }
