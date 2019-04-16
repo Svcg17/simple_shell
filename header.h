@@ -52,6 +52,7 @@ int _strncmp(char *s1, const char *s2, int n);
 char *str_concat(char *s1, char *s2);
 int digit_number(int num);
 char *_itoa(int num);
+int _putchar(char c);
 
 /* parse.c - Functions relating to parsing/tokenizing the command and PATH */
 char *catdir(char **dirs, char *cmd, char *envvar);
