@@ -21,52 +21,23 @@ char *catdir(char **dirs, char *cmd, __attribute__((unused)) char *envvar)
 	getcwd(cwd, 256);
 	cwdtemp = _strcat(cwd, "/");
 	cwdtemp = _strcat(cwd, cmd);
-/*
-	for (j = 0; envvar[j]; j++)
-	{
-		if (envvar[j] == ':' && envvar[j + 1] == ':')
-		{
-		if (_strncmp(envvar[j + 2], "/bin", 5) == 0 &&
-			    stat(cwdtemp, &st) == 0)
-			{
-				free(temp);
-				free(cwd);
-				return (cwdtemp);
-			}
-		}
-	}
-*/
+
 	while (dirs[i])
 	{
 			temp[0] = 0;
-
 			str = _strcat(temp, dirs[i]);
 			str = _strcat(temp, "/");
 			str = _strcat(temp, cmd);
-                        /* to account for `ls` executable files in cwd */
+/* to account for `ls` executable files in cwd */
 			if (stat(cwdtemp, &st) == 0 && stat(str, &st) == 0)
-			{
-				free(cwd);
-				str = _strdup(str);
-				free(temp);
-				return (str);
-			}
-
-                        /* to account for /bin/ls */
+				return (free_execcwd(str, cwd, temp));
+/* to account for /bin/ls */
 			if (stat(cmd, &st) == 0 && stat(cwdtemp, &st) < 0)
-			{
-				free(cwd);
-				free(temp);
-				return (cmd);
-			}
-			/* for regular command inputs */
+				return (free_abspath(cmd, cwd, temp));
+/* for regular command inputs */
 			if (stat(str, &st) == 0 && stat(cwdtemp, &st) < 0)
-			{
-				free(cwd);
-				str = _strdup(str);
-				free(temp);
-				return (str);
-			}
+				return (free_regcmd(cwd, str, temp));
+
 		_memset(temp, '\0', 256);
 		i++;
 	}
