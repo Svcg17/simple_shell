@@ -54,6 +54,9 @@ int digit_number(int num);
 char *_itoa(int num);
 int _putchar(char c);
 
+/* helperfunctions3.c - Even more helper funcitons */
+void _puts(char *str);
+
 /* parse.c - Functions relating to parsing/tokenizing the command and PATH */
 char *catdir(char **dirs, char *cmd, char *envvar);
 char **parse_dirs(char *str);
