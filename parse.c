@@ -7,34 +7,26 @@
  * Return: the concatenated string with the command
  */
 
-char *catdir(char **dirs, char *cmd, char *envvar)
+char *catdir(char **dirs, char *cmd, __attribute__((unused)) char *envvar)
 {
-	char *str;
-	char *cwdtemp;
+	char *str, *cwdtemp, *temp, *cwd;
 	struct stat st;
-	int j;
-/*
-static
-*/
-	char *temp = malloc(sizeof(char) * 256);
-	char *cwd = malloc(sizeof(char) * 256);
-	int i = 0;
+	int j, i = 0;
 
-	if (temp == NULL)
-		return (NULL);
-
-	if (cwd == NULL)
+	temp = malloc(sizeof(char) * 256);
+	cwd = malloc(sizeof(char) * 256);
+	if (temp == NULL || cwd == NULL)
 		return (NULL);
 
 	getcwd(cwd, 256);
 	cwdtemp = _strcat(cwd, "/");
 	cwdtemp = _strcat(cwd, cmd);
-
+/*
 	for (j = 0; envvar[j]; j++)
 	{
 		if (envvar[j] == ':' && envvar[j + 1] == ':')
 		{
-			if (_strncmp(envvar[j + 2], "/bin", 5) == 0 &&
+		if (_strncmp(envvar[j + 2], "/bin", 5) == 0 &&
 			    stat(cwdtemp, &st) == 0)
 			{
 				free(temp);
@@ -43,7 +35,7 @@ static
 			}
 		}
 	}
-
+*/
 	while (dirs[i])
 	{
 			temp[0] = 0;
@@ -96,7 +88,6 @@ char **parse_dirs(char *str)
 
 	token = strtok(str, ":");
 	i = 0;
-	printf("%s\n", token);
 	while (token)
 	{
 		bigb[i] = token;
