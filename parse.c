@@ -160,7 +160,7 @@ char *get_env(char *buff)
 {
 	char **bigb;
 	char *envvar;
-	char *concatstr;
+	char *concatstr, *str;
 	struct stat st;
 
 	envvar = findvar();
@@ -168,14 +168,16 @@ char *get_env(char *buff)
 	if (envvar == NULL)
 	{
 		free(envvar);
+		str = _strdup(buff);
 		return(buff);
 	}
-	if (envvar[0] == ':')
+	if (envvar[0] == ':' && buff[0] != '/')
 	{
 		if(stat(buff, &st) == 0)
 		{
 			free(envvar);
-			return (buff);
+			str = _strdup(buff);
+			return (str);
 		}
 	}
 
@@ -201,8 +203,9 @@ char **getinput(char *input)
 
         while (input[i])
                 i++;
-
+/*
 	if (input[i - 1] == '\n')
+*/
 		input[i - 1] = '\0';
 
         token = strtok(input, " ");
