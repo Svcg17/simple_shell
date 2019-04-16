@@ -6,8 +6,7 @@
  * @cmd: the command entered by user
  * Return: the concatenated string with the command
  */
-
-char *catdir(char **dirs, char *cmd, __attribute__((unused)) char *envvar)
+char *catdir(char **dirs, char *cmd)
 {
 	char *str, *cwdtemp, *temp, *cwd;
 	struct stat st;
@@ -24,19 +23,19 @@ char *catdir(char **dirs, char *cmd, __attribute__((unused)) char *envvar)
 
 	while (dirs[i])
 	{
-			temp[0] = 0;
-			str = _strcat(temp, dirs[i]);
-			str = _strcat(temp, "/");
-			str = _strcat(temp, cmd);
-/* to account for `ls` executable files in cwd */
-			if (stat(cwdtemp, &st) == 0 && stat(str, &st) == 0)
-				return (free_execcwd(str, cwd, temp));
-/* to account for /bin/ls */
-			if (stat(cmd, &st) == 0 && stat(cwdtemp, &st) < 0)
-				return (free_abspath(cmd, cwd, temp));
-/* for regular command inputs */
-			if (stat(str, &st) == 0 && stat(cwdtemp, &st) < 0)
-				return (free_regcmd(cwd, str, temp));
+		temp[0] = 0;
+		str = _strcat(temp, dirs[i]);
+		str = _strcat(temp, "/");
+		str = _strcat(temp, cmd);
+/*to account for `ls` executable files in cwd*/
+		if (stat(cwdtemp, &st) == 0 && stat(str, &st) == 0)
+			return (free_execcwd(str, cwd, temp));
+/*to account for /bin/ls*/
+		if (stat(cmd, &st) == 0 && stat(cwdtemp, &st) < 0)
+			return (free_abspath(cmd, cwd, temp));
+/*for regular command inputs*/
+		if (stat(str, &st) == 0 && stat(cwdtemp, &st) < 0)
+			return (free_regcmd(cwd, str, temp));
 
 		_memset(temp, '\0', 256);
 		i++;
@@ -91,11 +90,6 @@ char *findvar(void)
 			token = strtok(NULL, "PATH");
 			break;
 		}
-/*		else if (_strcmp(token, ":PATH") == 0)
-		{
-			token = strtok(NULL, ":PATH");
-			break;
-			}*/
 		else
 		{
 			token = NULL;
@@ -105,19 +99,10 @@ char *findvar(void)
 	if (token)
 	{
 		token = _strdup(token);
-		/* if (token */
-		free(copy); /*cpy*/
+		free(copy);
 	}
 
 	return (token);
-/*
-	for (i = 0; environ[i]; i++)
-		if (_strncmp(environ[i], "PATH=", 5) == 0)
-			return (strdup(environ[i] + 5));
-
-	return (NULL);
-*/
-
 }
 
 /**
@@ -140,11 +125,11 @@ char *get_env(char *buff)
 	{
 		free(envvar);
 		str = _strdup(buff);
-		return(buff);
+		return (buff);
 	}
 	if (envvar[0] == ':' && buff[0] != '/')
 	{
-		if(stat(buff, &st) == 0)
+		if (stat(buff, &st) == 0)
 		{
 			free(envvar);
 			str = _strdup(buff);
@@ -168,26 +153,26 @@ char *get_env(char *buff)
 
 char **getinput(char *input)
 {
-        char **bigb = malloc(10 * (sizeof(char *)));
-        char *token;
-        int i = 0;
+	char **bigb = malloc(10 * (sizeof(char *)));
+	char *token;
+	int i = 0;
 
-        while (input[i])
-                i++;
+	while (input[i])
+		i++;
 
 	if (input[i - 1] == '\n')
 
 		input[i - 1] = '\0';
 
-        token = strtok(input, " \t");
-        i = 0;
-        while (token)
-        {
-                bigb[i] = token;
-                i++;
-                token = strtok(NULL, " \t");
-        }
-        bigb[i] = NULL;
-	/* free(token); should be free with main()::free(buff) */
-        return (bigb);
+	token = strtok(input, " \t");
+	i = 0;
+	while (token)
+	{
+		bigb[i] = token;
+		i++;
+		token = strtok(NULL, " \t");
+	}
+	bigb[i] = NULL;
+/* free(token); should be free with main()::free(buff) */
+	return (bigb);
 }
