@@ -66,46 +66,46 @@ char *str_concat(char *s1, char *s2)
 	}
 	return (s3);
 }
-
-int no_of_digits(int num)
+/**
+ * digit_number - counts the number of digits in an integer
+ * @num: the number to count through
+ * Return: the number of digits @num has
+ */
+int digit_number(int num)
 {
-	int digit_count = 0;
+	int counter = 0;
 
 	while(num > 0)
 	{
-		digit_count++;
+		counter++;
 		num /= 10;
 	}
 
-	return digit_count;
+	return (counter);
 }
 
+/**
+ * _itoa - Converts an integer to a string
+ * @num: the number to convert
+ * Return: the new string
+ */
 
-char *i_to_a(int num)
+char *_itoa(int num)
 {
 	char *str;
-	int digit_count = 0;
+	int counter = 0;
 
-	if(num < 0)
+	counter += digit_number(num);
+	str = (char *)malloc(sizeof(char)*(counter + 1));
+
+	str[counter] = '\0';
+
+	while (num > 0)
 	{
-		num = -1*num;
-		digit_count++;
+		str[counter - 1] = num % 10 + '0';
+		num = num / 10;
+		counter--;
 	}
 
-	digit_count += no_of_digits(num);
-	str = (char *)malloc(sizeof(char)*(digit_count+1));
-
-	str[digit_count] = '\0';
-
-	while(num > 0)
-	{
-		str[digit_count-1] = num%10 + '0';
-		num = num/10;
-		digit_count--;
-	}
-
-	if(digit_count == 1)
-		str[0] = '-';
-
-	return str;
+	return (str);
 }

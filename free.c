@@ -45,7 +45,7 @@ int execerror(char *buff, char **bigb, int counter, char *arg)
 	int length;
 	char *c = NULL;
 
-	c = i_to_a(counter);
+	c = _itoa(counter);
 
 	if (isatty(0))
 		str1 = str_concat("mango ", ": ");
