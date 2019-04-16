@@ -11,7 +11,7 @@ char *catdir(char **dirs, char *cmd, __attribute__((unused)) char *envvar)
 {
 	char *str, *cwdtemp, *temp, *cwd;
 	struct stat st;
-	int j, i = 0;
+	int i = 0;
 
 	temp = malloc(sizeof(char) * 256);
 	cwd = malloc(sizeof(char) * 256);
@@ -88,6 +88,7 @@ char **parse_dirs(char *str)
 
 	token = strtok(str, ":");
 	i = 0;
+
 	while (token)
 	{
 		bigb[i] = token;
@@ -200,7 +201,9 @@ char **getinput(char *input)
 
         while (input[i])
                 i++;
-        input[i - 1] = '\0';
+
+	if (input[i - 1] == '\n')
+		input[i - 1] = '\0';
 
         token = strtok(input, " ");
         i = 0;
