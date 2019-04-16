@@ -4,6 +4,7 @@
  * @buff: buffer with user input
  * @bigb: array of strings of user input
  * @cmd: full path of user input
+ * Return: nothing
  */
 void free_all(char *buff, char **bigb, char *cmd)
 {
@@ -11,10 +12,12 @@ void free_all(char *buff, char **bigb, char *cmd)
 	free(cmd);
 	free(bigb);
 }
+
 /**
  *free_some - free buffer and bigb
  * @buff: buffer with user input
  * @bigb: array of strings of user input
+ * Return: nothing
  */
 void free_some(char *buff, char **bigb)
 {
@@ -25,15 +28,20 @@ void free_some(char *buff, char **bigb)
 void free_parent(char *buff, char **bigb, char *cmd)
 {
 	if ((bigb[0][0] == '/'))
-	{
 		free_some(buff, bigb);
-	}
-/*badboy*/
-	else
-	{
+
+	else /* for badboy */
 		free_all(buff, bigb, cmd);
-	}
 }
+
+/**
+ * execerror - Handles the error message and free() when execute fails
+ * @buff: the user inputted string
+ * @bigb: the string of arrays holding the input command and flags
+ * @counter: integer counter to display for error
+ * @arg: Executable file name for non-interactive mode
+ * Return: -1
+ */
 
 int execerror(char *buff, char **bigb, int counter, char *arg)
 {
@@ -51,6 +59,7 @@ int execerror(char *buff, char **bigb, int counter, char *arg)
 		str1 = str_concat("mango ", ": ");
 	else
 		str1 = str_concat(arg, ": ");
+
 	str2 = str_concat(str1, c);
 	free(str1);
 	str3 = str_concat(str2, ": ");
@@ -68,6 +77,13 @@ int execerror(char *buff, char **bigb, int counter, char *arg)
 	free_some(buff, bigb);
 	return (-1);
 }
+
+/**
+ * child_fail - handles free() and error if child fails
+ * @buff: the user inputted string
+ * @bigb: string of arrays holding inputted command and any flags
+ * Return: 1
+ */
 
 int child_fail(char *buff, char **bigb)
 {
