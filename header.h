@@ -69,4 +69,5 @@ int getbuiltfunc(char *s);
 int printenv(void);
 int exitt(void);
 
+void child_split(char *buff, char **bigb, char *cmd, char **argv, int counter);
 #endif
