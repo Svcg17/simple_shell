@@ -4,7 +4,7 @@
  *
  * Return: 0
  */
-int main(void)
+int main(int argc __attribute__((unused)), char **argv)
 {
 	int status, line;
         int counter = 0, builtfunc_ret = 0;
@@ -41,7 +41,7 @@ int main(void)
 			if (cmd == NULL)
 				cmd = "";
 			if (execve(cmd, bigb, NULL) == -1)
-				return(execerror(buff, bigb));
+				return(execerror(buff, bigb, counter, argv[0]));
 		}
 		else
 		{
