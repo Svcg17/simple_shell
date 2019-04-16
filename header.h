@@ -58,7 +58,7 @@ int _putchar(char c);
 void _puts(char *str);
 
 /* parse.c - Functions relating to parsing/tokenizing the command and PATH */
-char *catdir(char **dirs, char *cmd, char *envvar);
+char *catdir(char **dirs, char *cmd);
 char **parse_dirs(char *str);
 char *findvar(void);
 char *get_env(char *buff);
