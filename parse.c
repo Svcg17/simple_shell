@@ -138,7 +138,7 @@ char *get_env(char *buff)
 	}
 
 	bigb = parse_dirs(envvar);
-	concatstr = catdir(bigb, buff, envvar);
+	concatstr = catdir(bigb, buff);
 
 	free(envvar);
 	free(bigb);
