@@ -71,16 +71,16 @@ char *str_concat(char *s1, char *s2)
  * @num: the number to count through
  * Return: the number of digits @num has
  */
-int digit_number(int num)
+int _getcount(int num)
 {
 	int counter = 0;
+	unsigned int m = num;
 
-	while(num > 0)
+	while(m > 0)
 	{
+		m = m / 10;
 		counter++;
-		num /= 10;
 	}
-
 	return (counter);
 }
 
@@ -92,20 +92,16 @@ int digit_number(int num)
 
 char *_itoa(int num)
 {
-	char *str;
-	int counter = 0;
+	char *s;
+	int i =  _getcount(num);
 
-	counter += digit_number(num);
-	str = (char *)malloc(sizeof(char)*(counter + 1));
-
-	str[counter] = '\0';
-
+	s = malloc(sizeof(char)*(i + 1));
+	s[i] = '\0';
 	while (num > 0)
 	{
-		str[counter - 1] = num % 10 + '0';
+		s[i - 1] = num % 10 + '0';
 		num = num / 10;
-		counter--;
+		i--;
 	}
-
-	return (str);
+	return (s);
 }
