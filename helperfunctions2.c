@@ -1,6 +1,22 @@
 #include "header.h"
 
 /**
+ * _strcmp - compares two strings
+ * @s1: one of the strings to compare
+ * @s2: the other string to compare
+ * Return: difference in length
+ */
+
+int _strncmp(char *s1, const char *s2, int n)
+{
+        int i;
+
+        for (i = 0; (s1[i] == s2[i]) && (s1[i] || s2[i]) && i < n; i++)
+                ;
+        return (i != n);
+}
+
+/**
  * str_concat - concatenates two string
  *
  * @s1: the first string
@@ -49,32 +65,6 @@ char *str_concat(char *s1, char *s2)
 		j++;
 	}
 	return (s3);
-}
-/**
- * rev_string - Reverses a string
- *
- * @s: The string to reverse
- *
- * Return: nothing
- */
-
-void rev_string(char *s)
-{
-	int i;
-	int len;
-	char newStr;
-
-	i = 0;
-	len = _strlen(s) - 1;
-
-	while (len >= i)
-	{
-		newStr = s[len]; /*newStr == n*/
-		s[len] = s[i]; /*s[len] == H*/
-		s[i] = newStr; /*s[i] == n*/
-		len--;
-		i++;
-	}
 }
 
 int no_of_digits(int num)

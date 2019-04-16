@@ -47,10 +47,11 @@ char *str_concat(char *s1, char *s2);
 int _strncmp(char *s1, const char *s2, int n);
 char *i_to_a(int num);
 void rev_string(char *s);
+int no_of_digits(int num);
 
 /* Functions relating to parsing and tokenizing the command and PATH */
 char **getinput(char *input);
-char *catdir(char **dirs, char *cmd);
+char *catdir(char **dirs, char *cmd, char *envvar);
 char **parse_dirs(char *str);
 char *findvar(void);
 char *get_env(char *buff);
