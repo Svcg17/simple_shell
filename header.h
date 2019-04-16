@@ -45,9 +45,9 @@ char *_strdup(char *str);
 /* helperfunctions2.c */
 char *str_concat(char *s1, char *s2);
 int _strncmp(char *s1, const char *s2, int n);
-char *i_to_a(int num);
+char *_itoa(int num);
 void rev_string(char *s);
-int no_of_digits(int num);
+int digit_number(int num);
 
 /* Functions relating to parsing and tokenizing the command and PATH */
 char **getinput(char *input);
