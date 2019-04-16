@@ -22,41 +22,45 @@ typedef struct builtin
 	int (*f)(void);
 } built;
 
-/*signal handler function*/
+/* signal.c - Signal handler function*/
 void signals(int sign);
 
-/* Check getline return value */
+/* checkline.c - Checks getline return value */
 int checkline(char *buff);
 
-/* Free functions */
+/* free.c - Free functions for mango.c */
 void free_all(char *buff, char **bigb, char *cmd);
 void free_some(char *buff, char **bigb);
 void free_parent(char *buff, char **bigb, char *cmd);
 int execerror(char *buff, char **bigb, int counter, char *arg);
 int child_fail(char *buff, char**bigb);
 
-/* Helper functions */
-char *_memset(char *s, char b, unsigned int n);
+/* free2.c - More free functions for parse.c */
+char *free_execcwd(char *str, char *cwd, char *temp);
+char *free_abspath(char *cmd, char *cwd, char *temp);
+char *free_regcmd(char *cwd, char *str, char *temp);
+
+/* helperfunctions.c - Helper functions */
 int _strcmp(char *s1, const char *s2);
-char *_strcat(char *dest, char *src);
 int _strlen(char *s);
+char *_memset(char *s, char b, unsigned int n);
+char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
 
-/* helperfunctions2.c */
-char *str_concat(char *s1, char *s2);
+/* helperfunctions2.c - More helper functions */
 int _strncmp(char *s1, const char *s2, int n);
-char *_itoa(int num);
-void rev_string(char *s);
+char *str_concat(char *s1, char *s2);
 int digit_number(int num);
+char *_itoa(int num);
 
-/* Functions relating to parsing and tokenizing the command and PATH */
-char **getinput(char *input);
+/* parse.c - Functions relating to parsing/tokenizing the command and PATH */
 char *catdir(char **dirs, char *cmd, char *envvar);
 char **parse_dirs(char *str);
 char *findvar(void);
 char *get_env(char *buff);
+char **getinput(char *input);
 
-/* Built-in functions */
+/* builtins.c - Built-in functions */
 int getbuiltfunc(char *s);
 int printenv(void);
 int exitt(void);
