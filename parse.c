@@ -7,11 +7,12 @@
  * Return: the concatenated string with the command
  */
 
-char *catdir(char **dirs, char *cmd)
+char *catdir(char **dirs, char *cmd, char *envvar)
 {
 	char *str;
 	char *cwdtemp;
 	struct stat st;
+	int j;
 /*
 static
 */
@@ -28,6 +29,21 @@ static
 	getcwd(cwd, 256);
 	cwdtemp = _strcat(cwd, "/");
 	cwdtemp = _strcat(cwd, cmd);
+
+	for (j = 0; envvar[j]; j++)
+	{
+		if (envvar[j] == ':' && envvar[j + 1] == ':')
+		{
+			if (_strncmp(envvar[j + 2], "/bin", 5) == 0 &&
+			    stat(cwdtemp, &st) == 0)
+			{
+				free(temp);
+				free(cwd);
+				return (cwdtemp);
+			}
+		}
+	}
+
 	while (dirs[i])
 	{
 			temp[0] = 0;
@@ -172,7 +188,7 @@ char *get_env(char *buff)
 	}
 
 	bigb = parse_dirs(envvar);
-	concatstr = catdir(bigb, buff);
+	concatstr = catdir(bigb, buff, envvar);
 
 	free(envvar);
 	free(bigb);
