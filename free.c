@@ -27,8 +27,9 @@ void free_some(char *buff, char **bigb)
 
 void free_parent(char *buff, char **bigb, char *cmd)
 {
-	if ((bigb[0][0] == '/'))
+	if (bigb[0][0] == '/')
 		free_some(buff, bigb);
+
 
 	else /* for badboy */
 		free_all(buff, bigb, cmd);
