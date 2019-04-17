@@ -8,18 +8,13 @@
  */
 char *catdir(char **dirs, char *cmd)
 {
-	char *str, *cwdtemp, *temp, *cwd;
+	char *str, *temp;
 	struct stat st;
 	int i = 0;
 
 	temp = malloc(sizeof(char) * 256);
-	cwd = malloc(sizeof(char) * 256);
-	if (temp == NULL || cwd == NULL)
+	if (temp == NULL)
 		return (NULL);
-
-	getcwd(cwd, 256);
-	cwdtemp = _strcat(cwd, "/");
-	cwdtemp = _strcat(cwd, cmd);
 
 	while (dirs[i])
 	{
@@ -27,17 +22,24 @@ char *catdir(char **dirs, char *cmd)
 		str = _strcat(temp, dirs[i]);
 		str = _strcat(temp, "/");
 		str = _strcat(temp, cmd);
-/*to account for `ls` executable files in cwd*/
-		if (stat(cwdtemp, &st) == 0 && stat(str, &st) == 0)
-			return (free_execcwd(str, cwd, temp));
-/*for regular command inputs*/
-		if (stat(str, &st) == 0 && stat(cwdtemp, &st) < 0)
-			return (free_regcmd(cwd, str, temp));
+		if (stat(str, &st) == 0)
+		{
+			str = _strdup(str);
+			free(temp);
+			return (str);
+		}
 
 		_memset(temp, '\0', 256);
 		i++;
 	}
-	free(cwd);
+
+
+	if (stat(cmd, &st) == 0)
+	{
+		free(temp);
+		str = _strdup(cmd);
+		return(str);
+	}
 	free(temp);
 	return (NULL);
 }
