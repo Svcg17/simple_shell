@@ -11,7 +11,7 @@
 extern char **environ;
 
 /**
- * builtin - struct for builtin system calls
+ * struct builtin - struct for builtin system calls
  * @str: the builtin command entered by the user
  * @f: the function to execute if @str is entered
  * Return: the function to execute, 0 if @str is not found
@@ -33,7 +33,7 @@ void free_all(char *buff, char **bigb, char *cmd);
 void free_some(char *buff, char **bigb);
 void free_parent(char *buff, char **bigb, char *cmd);
 int execerror(char *buff, char **bigb, int counter, char *arg);
-int child_fail(char *buff, char**bigb);
+int child_fail(char *buff, char **bigb);
 
 /* free2.c - More free functions for parse.c */
 char *free_execcwd(char *str, char *cwd, char *temp);
