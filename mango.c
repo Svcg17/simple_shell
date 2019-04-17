@@ -57,8 +57,10 @@ void child_split(char *buff, char **bigb, char *cmd, char **argv, int counter)
 		child_fail(buff, bigb);
 	if (child_pd == 0)
 	{
+/*
 		if (cmd == NULL)
 			cmd = "";
+*/
 		if (execve(cmd, bigb, NULL) == -1)
 			execerror(buff, bigb, counter, argv[0]);
 	}
