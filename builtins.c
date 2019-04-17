@@ -15,13 +15,14 @@ int exitt(void)
 
 int printenv(void)
 {
-	int i;
+	int i, j;
 	char *cpy;
 
 	for (i = 0; environ[i]; i++)
 	{
 		cpy = _strdup(environ[i]);
-		_puts(cpy);
+		for (j = 0; cpy[j]; j++)
+			_putchar(cpy[j]);
 		free(cpy);
 	}
 	return (1);
