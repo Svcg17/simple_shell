@@ -30,18 +30,16 @@ int main(int argc __attribute__((unused)), char **argv)
 			free_some(buff, bigb);
 			continue;
 		}
+		builtfunc_ret = getbuiltfunc(bigb[0]);
+		if (builtfunc_ret == -1)
+		{
+			free_some(buff, bigb);
+			return (-1);
+		}
 		if (stat(bigb[0], &st) == 0 && bigb[0][0] == '/')
 			cmd = bigb[0];
 		else
-		{
-			builtfunc_ret = getbuiltfunc(bigb[0]);
-			if (builtfunc_ret == -1)
-			{
-				free_some(buff, bigb);
-				return (-1);
-			}
 			cmd = get_env(bigb[0]);
-		}
 		child_split(buff, bigb, cmd, argv, counter);
 	}
 	return (0);
