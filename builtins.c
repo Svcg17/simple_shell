@@ -18,7 +18,7 @@ int printenv(void)
 	int i;
 	char *cpy;
 
-	for (i = 0; environ[i]; i ++)
+	for (i = 0; environ[i]; i++)
 	{
 		cpy = _strdup(environ[i]);
 		_puts(cpy);
@@ -33,21 +33,20 @@ int printenv(void)
  */
 int getbuiltfunc(char *s)
 {
-        built ins[] = {
-                {"env", printenv},
-                {"exit", exitt},
-                {NULL, NULL}
-        };
-        int j;
+	built ins[] = {
+		{"env", printenv},
+		{"exit", exitt},
+		{NULL, NULL}
+	};
+	int j;
 
-        if (s != NULL)
-        {
-                for (j = 0; ins[j].str; j++)
-                {
-                        if (_strcmp(s, ins[j].str) == 0)
-                                return (ins[j].f());
-                }
-        }
-
-        return (0);
+	if (s != NULL)
+	{
+		for (j = 0; ins[j].str; j++)
+		{
+			if (_strcmp(s, ins[j].str) == 0)
+				return (ins[j].f());
+		}
+	}
+	return (0);
 }
