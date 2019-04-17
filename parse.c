@@ -38,7 +38,7 @@ char *catdir(char **dirs, char *cmd)
 	{
 		free(temp);
 		str = _strdup(cmd);
-		return(str);
+		return (str);
 	}
 	free(temp);
 	return (NULL);
