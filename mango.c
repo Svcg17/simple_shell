@@ -42,8 +42,6 @@ int main(int argc __attribute__((unused)), char **argv)
 				break;
 			cmd = get_env(bigb[0]);
 		}
-
-
 		child_split(buff, bigb, cmd, argv, counter);
 	}
 	free_some(buff, bigb);
