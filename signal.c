@@ -1,10 +1,11 @@
 #include "header.h"
-/* signals - function that handles signal
+/**
+ * signals - function that handles signals
+ * @sign: int
  */
-
 void signals(int sign)
 {
-        (void)sign;
-        signal(SIGINT, signals);
-        fflush(stdout);
+	(void)sign;
+	signal(SIGINT, signals);
+	fflush(stdout);
 }
