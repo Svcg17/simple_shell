@@ -14,19 +14,6 @@ char *free_execcwd(char *str, char *cwd, char *temp)
 	return (str);
 }
 
-/**
- * free_abspath - frees when commands typed in is /bin/ls
- * @cmd: command from input
- * @cwd: command + cwd
- * @temp: temp variable that holds array of strings containing dirs
- * Return: cmd
- */
-char *free_abspath(char *cmd, char *cwd, char *temp)
-{
-	free(cwd);
-	free(temp);
-	return (cmd);
-}
 
 /**
  * free_regcmd - frees regular commands found in path

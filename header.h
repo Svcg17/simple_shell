@@ -37,7 +37,6 @@ int child_fail(char *buff, char **bigb);
 
 /* free2.c - More free functions for parse.c */
 char *free_execcwd(char *str, char *cwd, char *temp);
-char *free_abspath(char *cmd, char *cwd, char *temp);
 char *free_regcmd(char *cwd, char *str, char *temp);
 
 /* helperfunctions.c - Helper functions */

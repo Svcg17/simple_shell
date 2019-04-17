@@ -30,9 +30,6 @@ char *catdir(char **dirs, char *cmd)
 /*to account for `ls` executable files in cwd*/
 		if (stat(cwdtemp, &st) == 0 && stat(str, &st) == 0)
 			return (free_execcwd(str, cwd, temp));
-/*to account for /bin/ls*/
-		if (stat(cmd, &st) == 0 && stat(cwdtemp, &st) < 0)
-			return (free_abspath(cmd, cwd, temp));
 /*for regular command inputs*/
 		if (stat(str, &st) == 0 && stat(cwdtemp, &st) < 0)
 			return (free_regcmd(cwd, str, temp));
