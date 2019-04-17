@@ -11,9 +11,10 @@ int _putchar(char c)
 	return (write(1, &c, 1));
 }
 /**
- * _strcmp - compares two strings
+ * _strncmp - compares two strings
  * @s1: one of the strings to compare
  * @s2: the other string to compare
+ * @n: integer used for size
  * Return: difference in length
  */
 
@@ -77,7 +78,7 @@ char *str_concat(char *s1, char *s2)
 	return (s3);
 }
 /**
- * digit_number - counts the number of digits in an integer
+ * _getcount - counts the number of digits in an integer
  * @num: the number to count through
  * Return: the number of digits @num has
  */
