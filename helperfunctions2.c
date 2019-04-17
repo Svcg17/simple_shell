@@ -19,11 +19,11 @@ int _putchar(char c)
 
 int _strncmp(char *s1, const char *s2, int n)
 {
-        int i;
+	int i;
 
-        for (i = 0; (s1[i] == s2[i]) && (s1[i] || s2[i]) && i < n; i++)
-                ;
-        return (i != n);
+	for (i = 0; (s1[i] == s2[i]) && (s1[i] || s2[i]) && i < n; i++)
+		;
+	return (i != n);
 }
 
 /**
@@ -86,7 +86,7 @@ int _getcount(int num)
 	int counter = 0;
 	unsigned int m = num;
 
-	while(m > 0)
+	while (m > 0)
 	{
 		m = m / 10;
 		counter++;
@@ -105,7 +105,7 @@ char *_itoa(int num)
 	char *s;
 	int i =  _getcount(num);
 
-	s = malloc(sizeof(char)*(i + 1));
+	s = malloc(sizeof(char) * (i + 1));
 	s[i] = '\0';
 	while (num > 0)
 	{
