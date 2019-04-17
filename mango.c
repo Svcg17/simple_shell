@@ -19,7 +19,10 @@ int main(int argc __attribute__((unused)), char **argv)
 		buff = NULL, bigb = NULL, cmd = NULL;
 		counter++;
 		if (isatty(0))
-			printf("mango$ ");
+		{
+			_putchar('$');
+			_putchar(' ');
+		}
 		line = getline(&buff, &size, stdin);
 		if (line == -1)
 			return (checkline(buff));
