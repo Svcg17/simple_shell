@@ -37,6 +37,8 @@ int main(int argc __attribute__((unused)), char **argv)
 			cmd = bigb[0];
 		else
 			cmd = get_env(bigb[0]);
+
+
 		child_split(buff, bigb, cmd, argv, counter);
 	}
 	free_some(buff, bigb);
