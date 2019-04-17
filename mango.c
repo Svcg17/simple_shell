@@ -63,7 +63,7 @@ void child_split(char *buff, char **bigb, char *cmd, char **argv, int counter)
 		/*if getenv() returns NULL*/
 		if (cmd == NULL)
 			cmd = "";
-		if (execve(cmd, bigb, NULL) == -1)
+		if (execve(cmd, bigb, environ) == -1)
 			execerror(buff, bigb, counter, argv[0]);
 	}
 	else
