@@ -22,7 +22,7 @@ In each input line, the first word is taken as the command, the following words 
 .SS Search and Execution
 As soon as a command is read, the mango first checks if it's a builtin command, if it is one, the shell will execute it internally and by itself without the need of creating another process. If the command is not a builtin then the shell will treat it as a normal program and look for it in the file system, the shell will execute the program, passing the arguments and the envionment to the program. Mango will create another process and execute that command there.
 .SS Path Search
-If a command is not a builtin, two thing might happen:
+If a command is not a builtin, two things might happen:
 .IP
 1. Commands starting with a slash are executed.
 .IP
@@ -31,7 +31,7 @@ If a command is not a builtin, two thing might happen:
 The following are the builtins implemented in this simple shell:
 .TP
 .IP \fBenv\fB
-Prints all the environment variables and it's contents.
+Prints all the environment variables and its contents.
 .TP
 .IP \fBexit\fB
 Exits the simple shell
