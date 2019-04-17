@@ -48,7 +48,6 @@ void free_parent(char *buff, char **bigb, char *cmd)
  * @arg: Executable file name for non-interactive mode
  * Return: -1
  */
-
 int execerror(char *buff, char **bigb, int counter, char *arg)
 {
 	char *str1 = NULL;
@@ -62,7 +61,7 @@ int execerror(char *buff, char **bigb, int counter, char *arg)
 	c = _itoa(counter);
 /*if inside a terminal error starts with shell name (mango)*/
 	if (isatty(0))
-		str1 = str_concat("mango ", ": ");
+		str1 = str_concat("mango", ": ");
 /*else error starts with the executable name (./mango)*/
 	else
 		str1 = str_concat(arg, ": ");
