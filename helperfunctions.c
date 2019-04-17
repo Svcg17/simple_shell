@@ -1,6 +1,4 @@
 #include "header.h"
-
-
 /**
  * _strcmp - compares two strings
  * @s1: one of the strings to compare
@@ -10,10 +8,11 @@
 
 int _strcmp(char *s1, const char *s2)
 {
-        int i;
-        for (i = 0; (s1[i] == s2[i]) && (s1[i] || s2[i]); i++)
-                ;
-        return (s1[i] - s2[i]);
+	int i;
+
+	for (i = 0; (s1[i] == s2[i]) && (s1[i] || s2[i]); i++)
+		;
+	return (s1[i] - s2[i]);
 }
 
 /**
