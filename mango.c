@@ -33,7 +33,7 @@ int main(int argc __attribute__((unused)), char **argv)
 			free_some(buff, bigb);
 			continue;
 		}
-		if (stat(bigb[0], &st) == 0)
+		if (stat(bigb[0], &st) == 0 && bigb[0][0] == '/')
 			cmd = bigb[0];
 		else
 		{
