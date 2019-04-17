@@ -6,7 +6,9 @@
  */
 int checkline(char *buff)
 {
-	printf("\n");
+	if (isatty(0))
+		_putchar('\n');
+
 	free(buff);
 	return (0);
 }
