@@ -12,6 +12,7 @@ int main(int argc __attribute__((unused)), char **argv)
 	char *buff = NULL, *cmd = NULL;
 	char **bigb = NULL;
 	size_t size = 0;
+	struct stat st;
 
 	signal(SIGINT, SIG_IGN);
 	while (1)
@@ -32,10 +33,17 @@ int main(int argc __attribute__((unused)), char **argv)
 			free_some(buff, bigb);
 			continue;
 		}
-		builtfunc_ret = getbuiltfunc(bigb[0]);
-		if (builtfunc_ret == -1)
-			break;
-		cmd = get_env(bigb[0]);
+		if (stat(bigb[0], &st) == 0)
+			cmd = bigb[0];
+		else
+		{
+			builtfunc_ret = getbuiltfunc(bigb[0]);
+			if (builtfunc_ret == -1)
+				break;
+			cmd = get_env(bigb[0]);
+		}
+
+
 		child_split(buff, bigb, cmd, argv, counter);
 	}
 	free_some(buff, bigb);
