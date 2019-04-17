@@ -35,10 +35,6 @@ void free_parent(char *buff, char **bigb, char *cmd);
 int execerror(char *buff, char **bigb, int counter, char *arg);
 int child_fail(char *buff, char **bigb);
 
-/* free2.c - More free functions for parse.c */
-char *free_execcwd(char *str, char *cwd, char *temp);
-char *free_regcmd(char *cwd, char *str, char *temp);
-
 /* helperfunctions.c - Helper functions */
 int _strcmp(char *s1, const char *s2);
 int _strlen(char *s);
