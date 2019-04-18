@@ -172,6 +172,5 @@ char **getinput(char *input)
 		token = strtok(NULL, " \t");
 	}
 	bigb[i] = NULL;
-/* free(token); should be free with main()::free(buff) */
 	return (bigb);
 }
