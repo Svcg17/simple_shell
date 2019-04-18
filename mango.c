@@ -7,7 +7,7 @@
  */
 int main(int argc __attribute__((unused)), char **argv)
 {
-	int line, status = 1;
+	int line;
 	int counter = 0, builtfunc_ret = 0;
 	char *buff = NULL, *cmd = NULL;
 	char **bigb = NULL;
@@ -32,7 +32,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		}
 		builtfunc_ret = getbuiltfunc(bigb[0]);
 		if (builtfunc_ret == -1)
-			exit(status);
+			exit(1);
 		if (stat(bigb[0], &st) == 0 && bigb[0][0] == '/')
 			cmd = bigb[0];
 		else
