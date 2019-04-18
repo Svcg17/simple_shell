@@ -26,19 +26,21 @@ ___
 
 File Name | Description
 --------- | -----------
-`mango.c` | the main file for the simple shell
-`parse.c` | holds the functions that parse and tokenizes the command and its location in the PATH
-`builtins.c` | holds the functions that execute if a built-in is called
-`getbuiltins.c` | holds the function that checks if user input is a built-in
-`checkline.c` | checks if user input is valid
-`free.c` | holds the functions that free any allocated memory as well as if execve() fails
-`helperfunctions.c` | holds helper functions to assist in the working of our code
-`helperfunctions2.c` | holds additional helper functions
-`signal.c` | accounts for how Ctrl-C is handled in the shell
-`header.h` | contains the prototypes for all functions
+[`mango.c`](https://github.com/Svcg17/simple_shell/blob/master/mango.c) | the main file for the simple shell
+[`parse.c`](https://github.com/Svcg17/simple_shell/blob/master/parse.c) | holds the functions that parse and tokenizes the command and its location in the PATH
+[`builtins.c`](https://github.com/Svcg17/simple_shell/blob/master/builtins.c) | holds the functions that execute if a built-in is called
+[`checkline.c`](https://github.com/Svcg17/simple_shell/blob/master/checkline.c) | checks if user input is valid
+[`free.c`](https://github.com/Svcg17/simple_shell/blob/master/free.c) | holds the functions that free any allocated memory as well as if execve() fails
+[`helperfunctions.c`](https://github.com/Svcg17/simple_shell/blob/master/helperfunctions.c) | holds helper functions to assist in the working of our code
+[`helperfunctions2.c`](https://github.com/Svcg17/simple_shell/blob/master/helperfunctions2.c) | holds additional helper functions
+[`helperfunctions3.c`](https://github.com/Svcg17/simple_shell/blob/master/helperfunctions3.c) | holds `_puts()`
+[`signal.c`](https://github.com/Svcg17/simple_shell/blob/master/signal.c) | accounts for how Ctrl-C is handled in the shell
+[`header.h`](https://github.com/Svcg17/simple_shell/blob/master/header.h) | contains the prototypes for all functions
 
 ___
 
 ### Who is responsible for this?
+
+![Sofía y Marc](https://imgur.com/a/UA8vnjN)
 
 This code was written by [Sofía Cheung](https://github.com/Svcg17) and [Marc Cavigli](https://github.com/MCavigli) with the help of the wonderful human beings in Cohort 8. We accept bitcoin and venmo.
