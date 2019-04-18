@@ -78,6 +78,7 @@ int child_split(char *buff, char **bigb, char *cmd, char **argv, int counter)
 	else
 	{
 		wait(&status);
+/*finding exit status of child and returning it*/
 		if (WIFEXITED(status))
 			exit_status = WEXITSTATUS(status);
 		free_parent(buff, bigb, cmd);
