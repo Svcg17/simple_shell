@@ -19,21 +19,22 @@ char *catdir(char **dirs, char *cmd)
 	while (dirs[i])
 	{
 		temp[0] = 0;
+/*concat slash and dirs to cmd*/
 		str = _strcat(temp, dirs[i]);
 		str = _strcat(temp, "/");
 		str = _strcat(temp, cmd);
+/*if command is found in path*/
 		if (stat(str, &st) == 0)
 		{
 			str = _strdup(str);
 			free(temp);
 			return (str);
 		}
-
+/*re-initialize temp to start loop again*/
 		_memset(temp, '\0', 256);
 		i++;
 	}
-
-
+/*if command is an executable in the current working dir*/
 	if (stat(cmd, &st) == 0)
 	{
 		free(temp);
