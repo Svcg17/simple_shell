@@ -33,7 +33,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (builtfunc_ret == -1)
 		{
 			free_some(buff, bigb);
-			exit(1);
+			exit(0);
 		}
 		else if (builtfunc_ret == 1)
 		{
