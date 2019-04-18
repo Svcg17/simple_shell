@@ -4,7 +4,7 @@
  * @buff: integer from getline
  * Return: zero in success
  */
-int checkline(char *buff)
+void checkline(char *buff)
 {
 	if (isatty(0))
 		_putchar('\n');
