@@ -41,4 +41,4 @@ ___
 
 ### Who is responsible for this?
 
-This code was written by [Sofía Cheung](https://github.com/Svcg17) and [Marc Cavigli](https://github.com/MCavigli) with the help of the wonderful human beings in Cohort 8. We accept bitcoin and venmo.
+This code was written by [Sofía Cheung](https://github.com/Svcg17) and [Marc Cavigli](https://github.com/MCavigli) with the help of the wonderful human beings in Cohort 8. We accept bitcoin and venmo :).
