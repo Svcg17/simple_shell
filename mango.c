@@ -7,7 +7,7 @@
  */
 int main(int argc __attribute__((unused)), char **argv)
 {
-	int line, counter = 0, builtfunc_ret = 0;
+	int line, exit_status = 0, counter = 0, builtfunc_ret = 0;
 	char *buff = NULL, *cmd = NULL;
 	char **bigb = NULL;
 	size_t size = 0;
@@ -33,7 +33,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (builtfunc_ret == -1)
 		{
 			free_some(buff, bigb);
-			exit(0);
+			exit(exit_status);
 		}
 		else if (builtfunc_ret == 1)
 		{
@@ -44,7 +44,7 @@ int main(int argc __attribute__((unused)), char **argv)
 			cmd = bigb[0];
 		else
 			cmd = get_env(bigb[0]);
-		child_split(buff, bigb, cmd, argv, counter);
+		exit_status = child_split(buff, bigb, cmd, argv, counter);
 	}
 	return (0);
 }
@@ -57,10 +57,11 @@ int main(int argc __attribute__((unused)), char **argv)
  * @argv: argument vector, used to hold the executable of this shell
  * @counter: a count of how many times the loop runs
  */
-void child_split(char *buff, char **bigb, char *cmd, char **argv, int counter)
+int child_split(char *buff, char **bigb, char *cmd, char **argv, int counter)
 {
 	pid_t child_pd;
 	int status;
+	int exit_status;
 
 	child_pd = fork();
 	if (child_pd == -1)
@@ -76,6 +77,10 @@ void child_split(char *buff, char **bigb, char *cmd, char **argv, int counter)
 	else
 	{
 		wait(&status);
+		if (WIFEXITED(status))
+			exit_status = WEXITSTATUS(status);
 		free_parent(buff, bigb, cmd);
+		return (exit_status);
 	}
+	return (0);
 }
