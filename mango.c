@@ -7,8 +7,7 @@
  */
 int main(int argc __attribute__((unused)), char **argv)
 {
-	int line;
-	int counter = 0, builtfunc_ret = 0;
+	int line, counter = 0, builtfunc_ret = 0;
 	char *buff = NULL, *cmd = NULL;
 	char **bigb = NULL;
 	size_t size = 0;
@@ -32,14 +31,21 @@ int main(int argc __attribute__((unused)), char **argv)
 		}
 		builtfunc_ret = getbuiltfunc(bigb[0]);
 		if (builtfunc_ret == -1)
+		{
+			free_some(buff, bigb);
 			exit(1);
+		}
+		else if (builtfunc_ret == 1)
+		{
+			free_some(buff, bigb);
+			continue;
+		}
 		if (stat(bigb[0], &st) == 0 && bigb[0][0] == '/')
 			cmd = bigb[0];
 		else
 			cmd = get_env(bigb[0]);
 		child_split(buff, bigb, cmd, argv, counter);
 	}
-	free_some(buff, bigb);
 	return (0);
 }
 
