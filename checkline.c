@@ -10,5 +10,5 @@ int checkline(char *buff)
 		_putchar('\n');
 
 	free(buff);
-	return (0);
+	exit(0);
 }

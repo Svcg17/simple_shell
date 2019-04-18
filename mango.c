@@ -22,7 +22,7 @@ int main(int argc __attribute__((unused)), char **argv)
 			_puts("$ ");
 		line = getline(&buff, &size, stdin);
 		if (line == -1)
-			return (checkline(buff));
+			checkline(buff);
 		bigb = getinput(buff);
 		if (bigb[0] == NULL)
 		{
