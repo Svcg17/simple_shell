@@ -26,7 +26,7 @@ typedef struct builtin
 void signals(int sign);
 
 /* checkline.c - Checks getline return value */
-int checkline(char *buff);
+void checkline(char *buff);
 
 /* free.c - Free functions for mango.c */
 void free_all(char *buff, char **bigb, char *cmd);
