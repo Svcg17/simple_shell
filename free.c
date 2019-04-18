@@ -83,7 +83,7 @@ int execerror(char *buff, char **bigb, int counter, char *arg)
 /*free final concatenated string*/
 	free(str5);
 	free_some(buff, bigb);
-	exit(1);
+	exit(127);
 }
 
 /**
