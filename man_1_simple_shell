@@ -1,4 +1,4 @@
-.TH mango 1 "04-18-2019" "1.00" "simple shell man page"
+.TH mango 1 "04-18-2019" "1.00" "mango shell man page"
 .SH NAME
 \fB Mango (shell)\fR\ - Implementation of a command line interpreter
 .SH SYNOPSIS
@@ -12,7 +12,7 @@ shell is a simple and practical version of a command line interpreter.
 Mango shell is a command used to get input from a file or from the terminal itself, read it, interpret it, and often execute another process. It is the program run when a user enters the system, therefore the user can directly type commands into the running shell or the commands can be written in a file and that file be executed by the shell.
 .SS Invocation
 Type in terminal:
-.B ./simple_shell
+.B ./mango
 .TP
 In interactive mode, a prompt is shown before each command. The shell reads from standard input.
 .SS Lexical Structure
