@@ -41,6 +41,6 @@ ___
 
 ### Who is responsible for this?
 
-![Sofía y Marc](https://imgur.com/a/UA8vnjN)
+(https://imgur.com/a/UA8vnjN)
 
 This code was written by [Sofía Cheung](https://github.com/Svcg17) and [Marc Cavigli](https://github.com/MCavigli) with the help of the wonderful human beings in Cohort 8. We accept bitcoin and venmo.
