@@ -56,6 +56,7 @@ int main(int argc __attribute__((unused)), char **argv)
  * @cmd: concatenated string of user input
  * @argv: argument vector, used to hold the executable of this shell
  * @counter: a count of how many times the loop runs
+ * Return: exit status of child process, or 0
  */
 int child_split(char *buff, char **bigb, char *cmd, char **argv, int counter)
 {
